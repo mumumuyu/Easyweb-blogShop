@@ -1,2 +1,2 @@
-# Esayweb-boke
-A Esayweb-boke for my web course design
+# Easyweb-boke
+A Easyweb-boke for my web course design

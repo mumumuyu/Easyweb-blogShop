@@ -28,6 +28,12 @@ class EsaywebBokeApplicationTests {
     ScoreDao scoreDao;
 
     @Test
+    void getAllScore(){
+        List<Score> scores = scoreDao.getAllScores(1,5);
+        System.out.println(scores);
+    }
+
+    @Test
     void TestReport(){
         List<Integer> num = reportYearMapper.reportYearBoke("2021");
         for(int n: num){

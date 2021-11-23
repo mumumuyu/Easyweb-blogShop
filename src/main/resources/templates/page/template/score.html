@@ -195,8 +195,8 @@
                     layer.close(dIndex);
                     layer.msg(res.msg, {icon: 1});
                     insTb.reload({}, 'data');
-                  } else {
-                    layer.msg("权限不够", {icon: 2});
+                  } else if(res.code == 500){
+                    layer.msg(res.msg, {icon: 2});
                   }
                 },
                 error : function(xhr,textStatus,errorThrown){
@@ -262,8 +262,8 @@
                     layer.close(dIndex);
                     layer.msg(res.msg, {icon: 1});
                     insTb.reload({}, 'data');
-                  } else {
-                    layer.msg("权限不够", {icon: 2});
+                  } else if(res.code == 500){
+                    layer.msg(res.msg, {icon: 2});
                   }
                 },
                 error : function(xhr,textStatus,errorThrown){

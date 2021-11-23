@@ -3,12 +3,14 @@ package com.lgd.controller;
 import com.lgd.bean.Comment;
 import com.lgd.bean.ResBody;
 import com.lgd.bean.Score;
+import com.lgd.bean.User;
 import com.lgd.service.ScoreService;
 import org.apache.shiro.authz.annotation.RequiresAuthentication;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 import java.util.List;
 
@@ -38,9 +40,12 @@ public class ScoreController {
         if (i == 1){
             resBody.setCode(200);
             resBody.setMsg("评分成功");
+        }else if(i == -1){
+            resBody.setCode(500);
+            resBody.setMsg("您已评论过改用户");
         }else{
             resBody.setCode(500);
-            resBody.setMsg("评分失败");
+            resBody.setMsg("评论失败，发生未知错误");
         }
         return resBody;
     }
@@ -61,17 +66,22 @@ public class ScoreController {
     }
 
     @PostMapping("/api/updateScore")
-    @RequiresRoles("admin")
-    public ResBody updateBoke(@RequestBody Score score) {
+    @RequiresAuthentication
+    public ResBody updateBoke(@RequestBody Score score, HttpServletRequest request) {
         ResBody resBody = new ResBody();
         score.setCreate_time(new Date());
-        int i = service.updateScore(score);
+        User user = (User) request.getSession().getAttribute("user");
+        int u_id = user.getId();
+        int i = service.updateScore(score,u_id);
         if (i == 1){
             resBody.setCode(200);
             resBody.setMsg("修改成功");
+        }else if(i == -1){
+            resBody.setCode(500);
+            resBody.setMsg("您只能修改自己的评分噢~");
         }else{
             resBody.setCode(500);
-            resBody.setMsg("修改失败");
+            resBody.setMsg("修改失败，发生未知错误");
         }
         return resBody;
     }

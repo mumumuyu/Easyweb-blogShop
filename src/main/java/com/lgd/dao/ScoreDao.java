@@ -41,9 +41,9 @@ public class ScoreDao {
         }
     }
 
-    public List<Score> getScoresByBid(int id) {
-        List<Score> list = template.query("select * from score where b_id = ?" ,new Object[]{id},
-                new BeanPropertyRowMapper(Comment.class));
+    public List<Score> getScoresByid(int id) {
+        List<Score> list = template.query("select * from score where id = ?" ,new Object[]{id},
+                new BeanPropertyRowMapper(Score.class));
         if (list != null){
             return list;
         }else {
@@ -51,10 +51,25 @@ public class ScoreDao {
         }
     }
 
-    public int addScore(Score score) {
-        return template.update("insert into score values(null,?,?,?,?)",
+    public List<Score> getScoresByUid(int u_id) {
+        List<Score> list = template.query("select * from score where u_id = ?" ,new Object[]{u_id},
+                new BeanPropertyRowMapper(Score.class));
+        if (list != null){
+            return list;
+        }else {
+            return null;
+        }
+    }
+
+        public int addScore(Score score) {
+        return template.update("insert into score values((select max(id)+1 from score us),?,?,?,?)",
                 score.getU_id(),score.getB_id(),score.getCreate_time(),score.getScore());
     }
+
+//    public int addScore(Score score) {
+//        return template.update("insert into score values(null,?,?,?,?)",
+//                score.getU_id(),score.getB_id(),score.getCreate_time(),score.getScore());
+//    }
 
     public int delScore(int id) {
         return template.update("DELETE from score where id = ?",id);

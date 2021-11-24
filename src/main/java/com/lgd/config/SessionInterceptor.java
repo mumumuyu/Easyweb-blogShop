@@ -22,7 +22,7 @@ public class SessionInterceptor implements HandlerInterceptor {
         // session过期
         if (admin == null) {
             LOG.info(">>>session过期, 跳至登录页");
-            response.sendRedirect("/login"); // 通过接口跳转登录页面, 注:重定向后下边的代码还会执行 ; /outToLogin是跳至登录页的后台接口
+            response.sendRedirect("/logins"); // 通过接口跳转登录页面, 注:重定向后下边的代码还会执行 ; /outToLogin是跳至登录页的后台接口
             return false;
         } else {
             return true;

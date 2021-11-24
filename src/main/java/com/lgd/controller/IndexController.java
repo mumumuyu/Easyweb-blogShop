@@ -25,6 +25,11 @@ public class IndexController {
         return "page/template/login";
     }
 
+    @GetMapping("/logins")
+    public String logins() {
+        return "page/template/logins";
+    }
+
     @GetMapping("/index")
     public String index() {
         return "index";

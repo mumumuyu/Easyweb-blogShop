@@ -4,6 +4,7 @@ import com.lgd.bean.ResBody;
 import com.lgd.bean.User;
 import com.lgd.service.UserService;
 import com.lgd.util.JWTUtil;
+import com.lgd.util.RandomValidateCodeUtil;
 import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.authz.annotation.RequiresAuthentication;
 import org.apache.shiro.authz.annotation.RequiresRoles;
@@ -12,6 +13,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +26,53 @@ public class UserController {
     @Autowired
     UserService service;
     private static final Logger LOG = LoggerFactory.getLogger(UserController.class);
+
+    /**
+     * 忘记密码页面校验验证码
+     */
+    @RequestMapping(value = "/checkVerify", method = RequestMethod.POST, headers = "Accept=application/json")
+    public ResBody checkVerify(@RequestBody Map<String, Object> requestMap, HttpSession session) {
+        ResBody resBody = new ResBody();
+        try{
+            //从session中获取随机数
+            String inputStr = requestMap.get("yzm").toString();
+            String random = (String) session.getAttribute("RANDOMVALIDATECODEKEY");
+            if (random == null) {
+                resBody.setCode(500);
+                resBody.setMsg("未获取验证码");
+            }
+            if (random.equals(inputStr)) {
+                resBody.setCode(200);
+            } else {
+                resBody.setCode(500);
+                resBody.setMsg("验证码输入错误");
+            }
+        }catch (Exception e){
+            LOG.error("验证码校验失败", e);
+            resBody.setCode(500);
+        }
+        return resBody;
+    }
+
+    /**
+     * 生成验证码
+     */
+    @RequestMapping(value = "/getVerify")
+    public void getVerify(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            //设置相应类型,告诉浏览器输出的内容为图片
+            response.setContentType("image/jpeg");
+            //设置响应头信息，告诉浏览器不要缓存此内容
+            response.setHeader("Pragma", "No-cache");
+            response.setHeader("Cache-Control", "no-cache");
+            response.setDateHeader("Expire", 0);
+            RandomValidateCodeUtil randomValidateCode = new RandomValidateCodeUtil();
+            //输出验证码图片方法
+            randomValidateCode.getRandcode(request, response);
+        } catch (Exception e) {
+            LOG.error("获取验证码失败>>>>   ", e);
+        }
+    }
 
     @ApiOperation(value="用户登录", notes="根据用户名，密码进行登录")
     @PostMapping("/user/loginByPassword")

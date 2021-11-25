@@ -1,5 +1,7 @@
 package com.lgd.controller;
 
+import io.swagger.annotations.Authorization;
+import org.apache.shiro.authz.annotation.RequiresAuthentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -96,6 +98,7 @@ public class UploadController {
     }
 
     @GetMapping(value="/download")
+    @RequiresAuthentication
     public String downloads(HttpServletResponse response , HttpServletRequest request) throws Exception{
         try {
             //要下载的图片地址

@@ -170,6 +170,7 @@
                             headers : {
                                 Authorization: '[[${session.token}]]'
                             },
+                            //变为同步请求
                             async:false,
                             success: function (res) {
                                 if (res.code == 0){

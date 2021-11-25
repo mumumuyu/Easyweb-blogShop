@@ -263,7 +263,7 @@
                 ,type: 'post' //默认post
               }
             });
-            $("#content").val(mBook.content)
+            $("#content").val(mBook.comment)
             var index = layedit.build('content'); //建立编辑器
             var url = '/api/updateComment';
             //mBook && (mBook.roleId = mUser.roles[0].roleId);

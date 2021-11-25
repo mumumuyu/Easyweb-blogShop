@@ -12,8 +12,11 @@ import java.util.List;
 @NoArgsConstructor
 public class ResBody<T> {
     public int code;
+    //要输出的提示信息
     public String msg;
-    public long count;
-    public List<T> data  = new ArrayList<T>();
 
+    //获取的数据条数
+    public long count;
+
+    public List<T> data  = new ArrayList<T>();
 }

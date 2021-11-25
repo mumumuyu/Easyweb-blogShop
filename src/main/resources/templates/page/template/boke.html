@@ -185,12 +185,60 @@
                             }
                         })
                         $(layero).children('.layui-layer-content').css('overflow', 'visible');
+                        // {
+                        //     "code": 0 //0表示成功，其它失败
+                        //     ,"msg": "" //提示信息 //一般上传失败后返回
+                        //     ,"data": {
+                        //     "src": "图片路径"
+                        //         ,"title": "图片名称" //可选
+                        // }
                         layedit.set({
                             uploadImage: {
                                 url: '/upload' //接口url
                                 ,type: 'post' //默认post
                             }
                         });
+                    //     layedit.set({
+                    //         //暴露layupload参数设置接口 --详细查看layupload参数说明
+                    //         //这里layui会用js用post方式给后台传递一下参数
+                    //         uploadImage: {
+                    //             url: '/Attachment/LayUploadFile',//接口地址
+                    //             accept: 'image',
+                    //             acceptMime: 'image/*',
+                    //             exts: 'jpg|png|gif|bmp|jpeg',
+                    //             size: '10240'
+                    //         }
+                    //         , uploadVideo: {
+                    //             url: '/Attachment/LayUploadFile',
+                    //             accept: 'video',
+                    //             acceptMime: 'video/*',
+                    //             exts: 'mp4|flv|avi|rm|rmvb',
+                    //             size: '20480'
+                    //         }
+                    //         //右键删除图片/视频时的回调参数，post到后台删除服务器文件等操作，
+                    //         //重点来了，这里layui会用post 方式给后台传你想删的图片路径，在后台你可以接受并删除
+                    //         //传递参数：
+                    //         //图片： imgpath --图片路径
+                    //         //视频： filepath --视频路径 imgpath --封面路径
+                    //         , calldel: {
+                    //             url: '/Attachment/DeleteFile'
+                    //         }
+                    //         //开发者模式 --默认为false
+                    //         , devmode: true
+                    //         //插入代码设置
+                    //         , codeConfig: {
+                    //             hide: true,  //是否显示编码语言选择框
+                    //             default: 'javascript' //hide为true时的默认语言格式
+                    //         }
+                    //         , tool: [
+                    //             'html', 'code', 'strong', 'italic', 'underline', 'del', 'addhr', '|', 'fontFomatt', 'colorpicker', 'face'
+                    //             , '|', 'left', 'center', 'right', '|', 'link', 'unlink',‘images’, 'image_alt', 'video', 'anchors'
+                    //         , '|',‘table’, 'fullScreen'
+                    // ]
+                    // , height: '90%'
+                    // });
+                    //     var ieditor = layedit.build('layeditDemo');
+                    // })
                         var index = layedit.build('content'); //建立编辑器
                         var url = '/api/addBoke';
                         // 回显数据

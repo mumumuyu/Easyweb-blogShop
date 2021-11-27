@@ -579,8 +579,10 @@ layui.define(["layer"], function (f) {
             var n = h(this).data("url");
             m.strToWin(h(this).data("window")).layui.admin.popupRight({
                 id: "layer-notice",
+                title: "消息",
                 type: 2,
-                content: n ? n : "page/tpl/tpl-message.html"
+                closeBtn: false,
+                content: n ? n : "/tpl-message"
             })
         }, update_reader: function() {
             var n = h(this).data("url");

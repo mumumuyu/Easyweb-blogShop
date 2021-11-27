@@ -45,6 +45,11 @@ public class IndexController {
         return "page/tpl/tpl-theme";
     }
 
+    @GetMapping("/tpl-message")
+    public String message(){
+        return "page/tpl/tpl-message";
+    }
+
     @GetMapping("/tpl-password")
     public String password(){
         return "page/tpl/tpl-password";

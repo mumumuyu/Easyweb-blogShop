@@ -98,7 +98,6 @@ public class UploadController {
     }
 
     @GetMapping(value="/download")
-    @RequiresAuthentication
     public String downloads(HttpServletResponse response , HttpServletRequest request) throws Exception{
         try {
             //要下载的图片地址

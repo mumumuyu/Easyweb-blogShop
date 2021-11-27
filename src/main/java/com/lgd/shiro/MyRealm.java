@@ -14,6 +14,7 @@ import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
@@ -26,9 +27,11 @@ public class MyRealm extends AuthorizingRealm {
     private static final Logger LOGGER = LogManager.getLogger(MyRealm.class);
 
     @Autowired
+    @Lazy
     UserService userService;
 
     @Autowired
+    @Lazy
     public void setUserService(UserService userService) {
         this.userService = userService;
     }

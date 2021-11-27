@@ -13,12 +13,12 @@ server:
 #    path: output/logs
 
 spring:
-  devtools:
-    restart:
-      enabled: true # 配置热部署
+#  devtools:
+#    restart:
+#      enabled: true # 配置热部署
   thymeleaf:
     #模板的模式，支持 HTML, XML TEXT JAVASCRIPT
-    mode: HTML5
+    mode: HTML
     #编码 可不用配置
     encoding: UTF-8
     #开发配置为false,避免修改模板还要重启服务器

@@ -72,7 +72,7 @@
       <div class="layui-input-block">
         <select name="b_id" lay-verify="required" id="b_id"
                 lay-filter="b_id">
-          <option value="">请选择标题</option>
+          <option value="">请先选择类别</option>
         </select>
       </div>
     </div>
@@ -240,8 +240,6 @@
                 success : function(res) {
                   optionforcata = "";
                   optionforboke = "";
-                  //empty() 方法从被选元素移除所有内容
-                  // $("[name='b_id']").empty();
                   $("#b_id").empty();
                   if (res.code == 0){
                     for(var i in res.data){

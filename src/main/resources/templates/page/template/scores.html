@@ -168,7 +168,7 @@
             return d.boke.title}}
           ,{field: 'u_id', sort: true,title: '评论人',minWidth:200,templet: function (d) {
             return d.user.username}}
-          ,{field: 'create_time', sort: true, title:'评论时间',templet: function (d) {
+          ,{field: 'create_time', sort: true, title:'上次修改时间',templet: function (d) {
             return util.toDateString(d.create_time);
           }}
           ,{field: 'score', sort: true,title: '分数', minWidth:200}

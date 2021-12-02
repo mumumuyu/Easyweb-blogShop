@@ -126,7 +126,7 @@
           ,{field: 'comment', sort: true,title: '评论',minWidth:200}
           ,{field: 'email', sort: true,title: '邮箱'}
           ,{field: 'nick', sort: true,title: '昵称',minWidth:200}
-          ,{field: 'create_time', sort: true, title:'评论时间',templet: function (d) {
+          ,{field: 'create_time', sort: true, title:'上次更新时间',templet: function (d) {
             return util.toDateString(d.create_time);
           }}
           ,{field: 'blog', sort: true,title: '博客',templet: function (d) {

@@ -57,10 +57,57 @@
   <form id="modelBookForm" lay-filter="modelBookForm" class="layui-form model-form">
     <input name="id" type="hidden"/>
 
+    <div class="layui-form-item" id="divCata">
+      <label class="layui-form-label">博客类别</label>
+      <div class="layui-input-block">
+        <select name="c_id" lay-verify="required" id="c_id"
+                lay-filter="c_id">
+          <option value="">请选择类别</option>
+        </select>
+      </div>
+    </div>
+
     <div class="layui-form-item">
       <label class="layui-form-label">博客标题</label>
       <div class="layui-input-block">
-        <select name="b_id" lay-verify="required">
+        <select name="b_id" lay-verify="required" id="b_id"
+                lay-filter="b_id">
+          <option value="">请选择标题</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="layui-form-item">
+      <label class="layui-form-label">评论人</label>
+      <div class="layui-input-block">
+        <select name="u_id" lay-verify="required">
+          <option th:value="${session.user.id}">[[${session.user.username}]]</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="layui-form-item">
+      <label class="layui-form-label">评分</label>
+      <div class="layui-input-block">
+        <input name="score" class="layui-input" type="text" placeholder="输入分数"/>
+      </div>
+    </div>
+
+    <div class="layui-form-item text-right">
+      <button class="layui-btn layui-btn-primary" type="button" ew-event="closePageDialog">取消</button>
+      <button class="layui-btn" lay-filter="modelSubmitBook" lay-submit>提交</button>
+    </div>
+  </form>
+</script>
+<script type="text/html" id="modelBook2">
+  <form id="modelBookForm2" lay-filter="modelBookForm" class="layui-form model-form">
+    <input name="id" type="hidden"/>
+
+    <div class="layui-form-item">
+      <label class="layui-form-label">博客标题</label>
+      <div class="layui-input-block">
+        <select name="b_id" lay-verify="required" id="b_id2"
+                lay-filter="b_id">
           <option value="">请选择标题</option>
         </select>
       </div>
@@ -140,6 +187,7 @@
       var data = obj.data;
       var layEvent = obj.event;
       if (layEvent === 'edit') { // 修改
+        // document.getElementById("modelBookForm").parentNode.removeChild(divCata);
         showEditModel(data);
       } else if (layEvent === 'del') { // 删除
         doDel(data.id, data.score);
@@ -148,16 +196,18 @@
 
     // 显示表单弹窗
     function showEditModel(mBook) {
-      var option = "";
+      var optionforcata = "";
+      var optionforboke = "";
       if(mBook==null){
         admin.open({
           type: 1,
           title: '新增评分',
           content: $('#modelBook').html(),
-          area: ['550px', '300px'],
+          area: ['550px', '350px'],
           success: function (layero, dIndex) {
+            //获取分类
             $.ajax({
-              url: '/ajax/getAllBokes',
+              url: '/ajax/getAllCatas',
               dataType: 'json',
               type: 'get',
               headers : {
@@ -165,17 +215,47 @@
               },
               async:false,
               success: function (res) {
+                optionforcata = "";
+                optionforboke = "";
                 if (res.code == 0){
                   for(var i in res.data){
-                    option += "<option value='"+res.data[i]['id']+"'>"+res.data[i]['title']+"</option>";
+                    optionforcata += "<option value='"+res.data[i]['id']+"'>"+res.data[i]['name']+"</option>";
                   }
                 }else {
-                  option += "<option value='0'>"+"权限不够"+"</option>";
+                  optionforcata += "<option value='0'>"+"权限不够"+"</option>";
                 }
-                $("[name='b_id']").append(option);
-                form.render()
+                $("[name='c_id']").append(optionforcata);
+                form.render("select");
               }
             })
+            //通过分类获取博客（二级联动的应用）
+            form.on('select(c_id)', function(data) {
+              $.ajax({
+                type : 'POST',
+                url : '/ajax/FindBokeByCata',
+                data : {
+                  'c_id' : $("#c_id").val()
+                },
+                dataType : 'json',
+                success : function(res) {
+                  optionforcata = "";
+                  optionforboke = "";
+                  //empty() 方法从被选元素移除所有内容
+                  // $("[name='b_id']").empty();
+                  $("#b_id").empty();
+                  if (res.code == 0){
+                    for(var i in res.data){
+                      optionforboke += "<option value='"+res.data[i]['id']+"'>"+res.data[i]['title']+"</option>";
+                    }
+                }else {
+                  optionforboke += "<option value='0'>"+"权限不够"+"</option>";
+                }
+                $("[name='b_id']").append(optionforboke);
+                  //重新刷新了一下下拉框
+                  form.render('select'); //重新渲染
+                }
+              });
+            });
             var url = '/api/addScore';
             // 回显数据
             form.val('modelBookForm', mBook);
@@ -218,7 +298,7 @@
           type: 1,
           title: '修改评分',
           area: ['550px', '300px'],
-          content: $('#modelBook').html(),
+          content: $('#modelBook2').html(),
           success: function (layero, dIndex) {
             $.ajax({
               url: '/ajax/getAllBokes',
@@ -231,12 +311,12 @@
               success: function (res) {
                 if (res.code == 0){
                   for(var i in res.data){
-                    option += "<option value='"+res.data[i]['id']+"'>"+res.data[i]['title']+"</option>";
+                    optionforboke += "<option value='"+res.data[i]['id']+"'>"+res.data[i]['title']+"</option>";
                   }
                 }else {
-                  option += "<option value='0'>"+"权限不够"+"</option>";
+                  optionforboke += "<option value='0'>"+"权限不够"+"</option>";
                 }
-                $("[name='b_id']").append(option);
+                $("[name='b_id']").append(optionforboke);
                 form.render()
               }
             })

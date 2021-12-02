@@ -97,7 +97,7 @@ public class IndexController {
 
     @GetMapping("/score")
     public String score(){
-        return "page/template/score";
+        return "page/template/scores";
     }
 
     @GetMapping("/user")

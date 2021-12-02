@@ -4,6 +4,7 @@ import com.lgd.bean.Boke;
 import com.lgd.bean.Count;
 import com.lgd.bean.ResBody;
 import com.lgd.service.BokeService;
+import org.apache.ibatis.annotations.Param;
 import org.apache.shiro.authz.annotation.RequiresAuthentication;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,16 @@ public class BokeController {
 
     @Autowired
     BokeService service;
+
+    @PostMapping("ajax/FindBokeByCata")
+    @RequiresAuthentication
+    public ResBody FindBokeByCata(@RequestParam int c_id) {
+        ResBody resBody = new ResBody();
+        List<Boke> list= service.getBokeById(c_id);
+        resBody.setData(list);
+        resBody.setCode(0);
+        return resBody;
+    }
 
     @GetMapping("ajax/getAllBokes")
     @RequiresAuthentication

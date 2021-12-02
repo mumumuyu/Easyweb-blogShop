@@ -50,8 +50,8 @@ public class BokeService {
         return dao.getAllBokes();
     }
 
-    public Boke getBokeById(int id) {
-        return dao.getBokeById(id);
+    public List<Boke> getBokeById(int id) {
+        return dao.getBokeByCid(id);
     }
 
     public List<Count> reportByYears() {return mapper.reportByYears();

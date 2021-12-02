@@ -84,18 +84,18 @@ public class BokeDao {
         }
     }
 
-    public Boke getBokeById(int id) {
-        List<Boke> list = template.query("select * from boke where id = ?",new Object[]{id} ,
+    public List<Boke> getBokeByCid(int c_id) {
+        List<Boke> list = template.query("select * from boke where c_id = ?",new Object[]{c_id} ,
                 new BeanPropertyRowMapper(Boke.class));
-        if (list!=null){
-            for (Boke b:list){
-                List<Cata> cataList = template.query("select * from cata where `id` = ?" ,new Object[]{b.getC_id()},
-                        new BeanPropertyRowMapper(Cata.class));
-                b.setCata(cataList.get(0));
-            }
-            return list.get(0);
-        }else{
-            return null;
-        }
+//        if (list!=null){
+//            for (Boke b:list){
+//                List<Cata> cataList = template.query("select * from cata where `id` = ?" ,new Object[]{b.getC_id()},
+//                        new BeanPropertyRowMapper(Cata.class));
+//                b.setCata(cataList.get(0));
+//            }
+            return list;
+//        }else{
+//            return null;
+//        }
     }
 }

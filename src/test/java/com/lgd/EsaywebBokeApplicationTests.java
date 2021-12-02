@@ -30,7 +30,8 @@ class EsaywebBokeApplicationTests {
     @Test
     void getAllScore(){
         List<Score> scores = scoreDao.getAllScores(1,5);
-        System.out.println(scores);
+        for (Score score:scores)
+            System.out.println(score.getCreate_time());
     }
 
     @Test

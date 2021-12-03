@@ -7,6 +7,7 @@ import com.lgd.dao.BokeDao;
 import com.lgd.dao.CommentDao;
 import com.lgd.dao.ReportYearMapper;
 import com.lgd.dao.ScoreDao;
+import com.lgd.util.MD5Utils;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -26,6 +27,19 @@ class EsaywebBokeApplicationTests {
     BokeDao bokeDao;
     @Autowired
     ScoreDao scoreDao;
+
+    @Test
+    void MD5Test() throws Exception {
+        String pwd="123456";
+        String newpwd = MD5Utils.md5Password(pwd);
+        System.out.println(newpwd);
+        String oldpwd = MD5Utils.generateCode(newpwd);
+        System.out.println(oldpwd);
+        String pwd2="123456";
+        String newpwd2 = MD5Utils.md5Password(pwd2);
+        System.out.println(newpwd2);
+        System.out.println(newpwd.equals(newpwd2));
+    }
 
     @Test
     void getAllScore(){

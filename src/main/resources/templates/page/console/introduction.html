@@ -4,7 +4,6 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>EasyWeb后台开发框架</title>
     <link rel="stylesheet" href="../../assets/libs/layui/css/layui.css"/>
     <link rel="stylesheet" href="../../assets/module/admin.css?v=315"/>
     <!--[if lt IE 9]>
@@ -56,51 +55,16 @@
 
 <!-- 正文开始 -->
 <div class="layui-fluid">
-    <div class="layui-row layui-col-space15">
-        <div class="layui-col-xs12 layui-col-sm6 layui-col-md3">
-            <div class="layui-card">
-                <div class="layui-card-header">
-                    访问量<span class="layui-badge layui-bg-blue pull-right">周</span>
-                </div>
-                <div class="layui-card-body">
-                    <p class="lay-big-font">99,666</p>
-                    <p>总计访问量<span class="pull-right">88万 <i class="layui-icon layui-icon-flag"></i></span></p>
-                </div>
-            </div>
-        </div>
-        <div class="layui-col-xs12 layui-col-sm6 layui-col-md3">
-            <div class="layui-card">
-                <div class="layui-card-header">
-                    下载<span class="layui-badge layui-bg-black pull-right">月</span>
-                </div>
-                <div class="layui-card-body">
-                    <p class="lay-big-font">33,555</p>
-                    <p>新下载<span class="pull-right">10% <i class="layui-icon">&#xe601</i></span></p>
+        <div align="center" style="margin-bottom: 20px;">
+            <div class="layui-carousel" id="test1">
+                <div carousel-item>
+                    <div><img src="././images/bg.jpg" class="pic" style="width: 100%;height: auto"/></div>
+                    <div><img src="././images/bg2.jpg" class="pic" style="width: 100%;height: auto"/></div>
+                    <div><img src="././images/bg3.png" class="pic" style="width: 100%;height: auto"/></div>
+                    <div><img src="././images/bg4.jpg" class="pic" style="width: 100%;height: auto"/></div>
+                    <div><img src="././images/bg5.jpg" class="pic" style="width: 100%;height: auto"/></div>
                 </div>
             </div>
-        </div>
-        <div class="layui-col-xs12 layui-col-sm6 layui-col-md3">
-            <div class="layui-card">
-                <div class="layui-card-header">
-                    Start<span class="layui-badge layui-bg-green pull-right">周</span>
-                </div>
-                <div class="layui-card-body">
-                    <p class="lay-big-font">99,666</p>
-                    <p>总Start数<span class="pull-right">88万 <i class="layui-icon layui-icon-rate"></i></span></p>
-                </div>
-            </div>
-        </div>
-        <div class="layui-col-xs12 layui-col-sm6 layui-col-md3">
-            <div class="layui-card">
-                <div class="layui-card-header">
-                    活跃用户<span class="layui-badge layui-bg-orange pull-right">月</span>
-                </div>
-                <div class="layui-card-body">
-                    <p class="lay-big-font">66,666</p>
-                    <p>最近一个月<span class="pull-right">15% <i class="layui-icon layui-icon-user"></i></span></p>
-                </div>
-            </div>
-        </div>
     </div>
 
     <div class="layui-row layui-col-space15">
@@ -299,16 +263,33 @@
         var layer = layui.layer;
         var carousel = layui.carousel;
         var device = layui.device;
-
+        var i = 0
+        var ins
+        var width = $(".pic")[i].width * 0.4 //获取宽度
+        var height = $(".pic")[i].height * 0.4 //获取高度
         // 渲染轮播
-        carousel.render({
-            elem: '.layui-carousel',
-            width: '100%',
-            height: '60px',
-            arrow: 'none',
+        ins = carousel.render({
+            elem: '#test1',
+            width: width,
+            height: height,
+            arrow: 'hover',
             autoplay: true,
             trigger: device.ios || device.android ? 'click' : 'hover',
             anim: 'fade'
+        });
+        //监听轮播
+        carousel.on('change(carofilter)', function(obj) {
+            i = obj.index
+            width = $(".img")[i].width
+            height = $(".img")[i].height
+            ins.reload({ //重置轮播
+                elem: '#test1',
+                width: width, //设置容器宽度
+                height: height,
+                arrow: 'hover', //始终显示箭头
+                anim: 'default', //切换动画方式
+                autoplay: false
+            });
         });
     });
 </script>

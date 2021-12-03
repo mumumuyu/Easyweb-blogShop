@@ -33,8 +33,6 @@ class EsaywebBokeApplicationTests {
         String pwd="123456";
         String newpwd = MD5Utils.md5Password(pwd);
         System.out.println(newpwd);
-        String oldpwd = MD5Utils.generateCode(newpwd);
-        System.out.println(oldpwd);
         String pwd2="123456";
         String newpwd2 = MD5Utils.md5Password(pwd2);
         System.out.println(newpwd2);

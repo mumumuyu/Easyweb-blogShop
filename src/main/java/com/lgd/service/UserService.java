@@ -2,6 +2,7 @@ package com.lgd.service;
 
 import com.lgd.bean.User;
 import com.lgd.dao.UserDao;
+import com.lgd.util.MD5Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,11 +14,13 @@ public class UserService {
     UserDao dao;
 
     public User getUser(String code) {
-        return dao.getUser(code);
+        User user = dao.getUser(code);
+        return user;
     }
 
     public int updatePass(Integer id, String newPsw) {
-        return dao.updatePass(id,newPsw);
+        String pwd = MD5Utils.md5Password(newPsw);
+        return dao.updatePass(id,pwd);
     }
 
     public User findById(int id) {
@@ -33,6 +36,7 @@ public class UserService {
     }
 
     public int addUser(User user) {
+        user.setPassword(MD5Utils.md5Password(user.getPassword()));
         return dao.addUser(user);
     }
 

@@ -1,6 +1,7 @@
 package com.lgd.dao;
 
 import com.lgd.bean.User;
+import com.lgd.util.MD5Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -89,8 +90,10 @@ public class UserDao {
     }
 
     public void resetPass(int id) {
+        String pwd = "123456";
+        String newPwd = MD5Utils.md5Password(pwd);
         template.update("update `user` set `password` = ? where id = ?",
-                "123456",id
+                newPwd,id
         );
     }
 }

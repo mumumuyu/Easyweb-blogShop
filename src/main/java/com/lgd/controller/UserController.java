@@ -4,6 +4,7 @@ import com.lgd.bean.ResBody;
 import com.lgd.bean.User;
 import com.lgd.service.UserService;
 import com.lgd.util.JWTUtil;
+import com.lgd.util.MD5Utils;
 import com.lgd.util.RandomValidateCodeUtil;
 import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.authz.annotation.RequiresAuthentication;
@@ -80,12 +81,13 @@ public class UserController {
                                    HttpSession session) {
         ResBody resBody = new ResBody();
         String code = params.get("code").toString();
-        String password = params.get("password").toString();
+        String password = MD5Utils.md5Password(params.get("password").toString());
         User user = service.getUser(code);
         if(user == null){
             resBody.setCode(500);
             resBody.setMsg("不存在此用户名,请重新登录");
         }else if (password.equals(user.getPassword())){
+            user.setPassword(params.get("password").toString());
             session.setAttribute("user",user);
             session.setAttribute("token", JWTUtil.sign(code, password));
             resBody.setCode(200);

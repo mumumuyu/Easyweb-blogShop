@@ -36,7 +36,6 @@ public class UserService {
     }
 
     public int addUser(User user) {
-        user.setPassword(MD5Utils.md5Password(user.getPassword()));
         return dao.addUser(user);
     }
 

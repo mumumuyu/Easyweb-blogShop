@@ -46,7 +46,6 @@
         </div>
     </div>
 </div>
-
 <!-- 表格操作列 -->
 <script type="text/html" id="tableBarBook">
     <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="edit">修改</a>
@@ -114,7 +113,7 @@
             cols: [
                 [
                     {title: '#',type:'numbers'}
-                    ,{field: 'title', sort: true, title: '博客标题'}
+                    ,{field: 'title', sort: true, title: '博客标题',style:'height:100px;'}
                     ,{field: 'content', title: '文章'}
                     ,{field: 'create_time', sort: true,title: '上次更新时间',templet: function (d) {
                         return util.toDateString(d.create_time);
@@ -399,6 +398,12 @@
 
     });
 </script>
-
+<style type="text/css">
+    .layui-table-cell{
+        text-align:center;
+        height: auto;
+        white-space: normal;
+    }
+</style>
 </body>
 </html>

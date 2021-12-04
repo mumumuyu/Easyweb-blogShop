@@ -1,12 +1,7 @@
 package com.lgd;
 
-import com.lgd.bean.Boke;
-import com.lgd.bean.Comment;
-import com.lgd.bean.Score;
-import com.lgd.dao.BokeDao;
-import com.lgd.dao.CommentDao;
-import com.lgd.dao.ReportYearMapper;
-import com.lgd.dao.ScoreDao;
+import com.lgd.bean.*;
+import com.lgd.dao.*;
 import com.lgd.util.MD5Utils;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +22,25 @@ class EsaywebBokeApplicationTests {
     BokeDao bokeDao;
     @Autowired
     ScoreDao scoreDao;
+    @Autowired
+    ProductDao productDao;
+    @Autowired
+    OrderDao orderDao;
+
+    @Test
+    void orderTest(){
+        List<Order> orders = orderDao.getAllOrder(1,1,5);
+        for (Order order:orders)
+            System.out.println(order);
+    }
+
+    @Test
+    void productTest(){
+        List<Product> products = productDao.getAllProduct(1,5);
+        for (Product product: products){
+            System.out.println(product);
+        }
+    }
 
     @Test
     void MD5Test() throws Exception {

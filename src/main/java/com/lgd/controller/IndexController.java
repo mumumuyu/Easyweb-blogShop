@@ -100,6 +100,16 @@ public class IndexController {
         return "page/template/scores";
     }
 
+    @GetMapping("/product")
+    public String product(){
+        return "page/template/product";
+    }
+
+    @GetMapping("/order")
+    public String order(){
+        return "page/template/order";
+    }
+
     @GetMapping("/user")
     public String user(){
         return "page/template/user";

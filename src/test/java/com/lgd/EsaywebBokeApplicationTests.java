@@ -2,6 +2,7 @@ package com.lgd;
 
 import com.lgd.bean.*;
 import com.lgd.dao.*;
+import com.lgd.service.ProductService;
 import com.lgd.util.MD5Utils;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,14 @@ class EsaywebBokeApplicationTests {
     ProductDao productDao;
     @Autowired
     OrderDao orderDao;
+    @Autowired
+    ProductService service;
+
+    @Test
+    void ProductServiceTest(){
+        int num = service.addToOrder(1,8001,3);
+        System.out.println(num);
+    }
 
     @Test
     void orderTest(){
@@ -36,7 +45,7 @@ class EsaywebBokeApplicationTests {
 
     @Test
     void productTest(){
-        List<Product> products = productDao.getAllProduct(1,5);
+        List<Product> products = productDao.getProductByid(8001);
         for (Product product: products){
             System.out.println(product);
         }

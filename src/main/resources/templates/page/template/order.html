@@ -77,11 +77,11 @@
 </script>
 <script type="text/html" id="paymentState">
     <input type="checkbox" lay-filter="ckStateUser" value="{{d.userId}}" lay-skin="switch" disabled
-           lay-text="已付|未付款" {{d.status==1?'checked':''}}/>
+           lay-text="已付|未付款" {{d.payment_status==1?'checked':''}}/>
 </script>
 <script type="text/html" id="orderState">
     <input type="checkbox" lay-filter="ckStateUser" value="{{d.userId}}" lay-skin="switch" disabled
-           lay-text="已收|未收货" {{d.status==1?'checked':''}}/>
+           lay-text="已收|未收货" {{d.order_status==1?'checked':''}}/>
 </script>
 <script type="text/html" id="table">
     {{d.amount}}{{d.product.unit}}
@@ -155,21 +155,6 @@
             //     openCheckList(data);
             // }
         });
-        // 上架详情弹窗
-        function openCheckList(d) {
-            console.log(d)
-            d.creationDate = util.toDateString(d.creationDate)
-            if (d.modifyDate != null){
-                d.modifyDate = util.toDateString(d.modifyDate)
-            }
-            laytpl(demoEDCheckList.innerHTML).render(d, function (html) {
-                admin.open({
-                    type: 1,
-                    title: '上架详情',
-                    content: html
-                });
-            });
-        }
         // 显示表单弹窗
         function showEditModel(mBook) {
                 admin.open({

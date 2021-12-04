@@ -17,7 +17,7 @@ public class Order {
     private float money;
     private int payment_status;
     private int order_status;
-    private Date createTime;
+    private Date create_time;
     private User user;
     private Product product;
 }

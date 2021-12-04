@@ -25,10 +25,11 @@ public class ProductService {
 
     public int addToOrder(int u_id,int p_id,int amount){
         List<Order> orders = dao.getOrderByUidPid(u_id,p_id);
+        orders.add(new Order());
         List<Product> productList =  dao.getProductByid(p_id);
         Product product = productList.get(0);
         float money = product.getPrice() * amount;
-        if (orders != null) {
+        if (orders.get(0).getId() != null) {
             Order oldOrder = orders.get(0);
             oldOrder.setMoney(money + oldOrder.getMoney());
             oldOrder.setAmount(amount + oldOrder.getAmount());

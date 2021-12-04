@@ -32,7 +32,7 @@ class EsaywebBokeApplicationTests {
 
     @Test
     void ProductServiceTest(){
-        int num = service.addToOrder(1,8001,3);
+        int num = service.addToOrder(1,8003,3);
         System.out.println(num);
     }
 
@@ -45,10 +45,9 @@ class EsaywebBokeApplicationTests {
 
     @Test
     void productTest(){
-        List<Product> products = productDao.getProductByid(8001);
-        for (Product product: products){
-            System.out.println(product);
-        }
+        List<Order> orders = productDao.getOrderByUidPid(1,8003);
+        Order product = orders.get(0);
+        System.out.println(product);
     }
 
     @Test

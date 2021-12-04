@@ -144,63 +144,48 @@
         table.on('tool(tableBook)', function (obj) {
             var data = obj.data;
             var layEvent = obj.event;
-            if (layEvent === 'buy') {
-                showEditModel(data);
-            }else{
-                openCheckList(data);
+            if (layEvent === 'del') {
+                doDel(data.p_id, data.product.name);
             }
-            // } else if (layEvent === 'del') { // 删除
-            //     doDel(data.id, data.billCode);
-            // } else if (layEvent == 'look') {
-            //     openCheckList(data);
-            // }
         });
-        // 显示表单弹窗
-        function showEditModel(mBook) {
-                admin.open({
-                    type: 1,
-                    title: '购买商品',
-                    content: $('#modelBook').html(),
-                    success: function (layero, dIndex) {
-                        $(layero).children('.layui-layer-content').css('overflow', 'visible');
-                        var url = '/api/addToOrder';
-                        // 回显数据
-                        form.val('modelBookForm', mBook);
-                        // 表单提交事件
-                        form.on('submit(modelSubmitBook)', function (data) {
-                            layer.load(2);
-                            $.ajax({
-                                url: url,
-                                type: "POST",
-                                data: JSON.stringify(data.field),
-                                headers: {Authorization: '[[${session.token}]]'},
-                                contentType: "application/json; charset=utf-8",
-                                dataType: "json",
-                                success: function (res) {
-                                    layer.closeAll('loading');
-                                    if (res.code == 200) {
-                                        layer.close(dIndex);
-                                        layer.msg(res.msg, {icon: 1});
-                                        insTb.reload({}, 'data');
-                                    } else {
-                                        layer.msg("权限不够", {icon: 2});
-                                    }
-                                },
-                                error: function (xhr, textStatus, errorThrown) {
-                                    if (xhr.status == 401) {
-                                        layer.closeAll('loading');
-                                        layer.msg("权限不够", {icon: 2});
-                                    } else {
-                                        // 调用外部的error
-                                        error && error(xhr, textStatus, errorThrown);
-                                    }
-                                }
-                            })
-                            return false;
-                        });
+
+        // 删除
+        function doDel(id, product) {
+            layer.confirm('确定要删除“' + product + '”吗？', {
+                skin: 'layui-layer-admin',
+                shade: .1
+            }, function (i) {
+                layer.close(i);
+                layer.load(2);
+                $.ajax({
+                    url:'/api/delOrder',
+                    type:"GET",
+                    data:{
+                        p_id: id
+                    },
+                    headers : { Authorization: '[[${session.token}]]'},
+                    dataType:"json",
+                    success: function(res){
+                        layer.closeAll('loading');
+                        if (res.code == 200) {
+                            layer.msg(res.msg, {icon: 1});
+                            insTb.reload({}, 'data');
+                        } else {
+                            layer.msg("权限不够", {icon: 2});
+                        }
+                    },
+                    error : function(xhr,textStatus,errorThrown){
+                        if (xhr.status == 401) {
+                            layer.closeAll('loading');
+                            layer.msg("权限不够", {icon: 2});
+                        } else{
+                            // 调用外部的error
+                            error && error(xhr,textStatus,errorThrown);
+                        }
                     }
-                });
-            }
+                })
+            });
+        }
     });
 </script>
 <style type="text/css">

@@ -28,10 +28,26 @@ public class OrderController {
         ResBody resBody = new ResBody();
         int count = service.getCount();
         int u_id = ((User)session.getAttribute("user")).getId();
-        List<Order> list= service.getAllScores(u_id,page, limit);
+        List<Order> list= service.getAllOrders(u_id,page, limit);
         resBody.setCount(count);
         resBody.setData(list);
         resBody.setCode(0);
+        return resBody;
+    }
+
+    @GetMapping("/api/delOrder")
+    @RequiresAuthentication
+    public ResBody delOrder(@RequestParam int p_id,HttpSession session) {
+        ResBody resBody = new ResBody();
+        int u_id = ((User)session.getAttribute("user")).getId();
+        int i = service.delOrder(u_id,p_id);
+        if (i == 1){
+            resBody.setCode(200);
+            resBody.setMsg("删除成功");
+        }else{
+            resBody.setCode(500);
+            resBody.setMsg("删除失败");
+        }
         return resBody;
     }
 }

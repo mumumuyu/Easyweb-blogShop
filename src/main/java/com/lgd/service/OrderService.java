@@ -18,7 +18,11 @@ public class OrderService {
         return dao.getCount();
     }
 
-    public List<Order> getAllScores(int u_id, int page, int limit) {
+    public List<Order> getAllOrders(int u_id, int page, int limit) {
         return dao.getAllOrder(u_id,page,limit);
+    }
+
+    public int delOrder(int u_id,int p_id){
+        return dao.delOrder(u_id,p_id);
     }
 }

@@ -37,4 +37,8 @@ public class OrderDao {
             return null;
         }
     }
+
+    public int delOrder(int u_id,int p_id) {
+        return template.update("DELETE from `order` where u_id = ? and p_id = ?", new Object[]{u_id,p_id});
+    }
 }

@@ -135,7 +135,7 @@
             insTb.reload({
                 where: data.field,
                 headers : { Authorization: '[[${session.token}]]'},
-                url:'/api/findProduct',
+                url:'/api/findOrder',
                 page : {curr : 1}},
                 'data');
         });

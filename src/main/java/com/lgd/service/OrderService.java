@@ -18,6 +18,12 @@ public class OrderService {
         return dao.getCount();
     }
 
+    public int getCount(String name,int u_id) {
+        return dao.getCount(name,u_id);
+    }
+
+    public List<Order> findOrder(int page, int limit, String name,int u_id){return dao.findOrder(page, limit, name, u_id);}
+
     public List<Order> getAllOrders(int u_id, int page, int limit) {
         return dao.getAllOrder(u_id,page,limit);
     }

@@ -20,6 +20,22 @@ public class OrderController {
     @Autowired
     OrderService service;
 
+    @GetMapping("/api/findOrder")
+    @RequiresAuthentication
+    public ResBody findOrder(@RequestParam int page,
+                             @RequestParam int limit,
+                             @RequestParam String name,
+                             HttpSession session) {
+        ResBody resBody = new ResBody();
+        int u_id = ((User)session.getAttribute("user")).getId();
+        int count = service.getCount(name,u_id);
+        List<Order> list= service.findOrder(page, limit,name,u_id);
+        resBody.setCount(count);
+        resBody.setData(list);
+        resBody.setCode(0);
+        return resBody;
+    }
+
     @GetMapping("/api/getAllOrders")
     @RequiresAuthentication
     public ResBody getAllOrders(@RequestParam int page,

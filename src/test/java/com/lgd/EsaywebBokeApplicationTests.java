@@ -38,8 +38,11 @@ class EsaywebBokeApplicationTests {
 
     @Test
     void orderTest(){
-        List<Order> orders = orderDao.getAllOrder(1,1,5);
-        for (Order order:orders)
+//        List<Order> orders = orderDao.getAllOrder(1,1,5);
+//        for (Order order:orders)
+//            System.out.println(order);
+        List<Order> orders = orderDao.findOrder(1,5,"天",1);
+        for(Order order:orders)
             System.out.println(order);
     }
 

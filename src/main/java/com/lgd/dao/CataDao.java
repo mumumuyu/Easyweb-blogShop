@@ -35,8 +35,8 @@ public class CataDao {
     }
 
     public int updateCata(Cata cata) {
-        return template.update("update cata set `name` = ? ,`create_time` = ? where id = ?",
-                cata.getName(), cata.getCreate_time(), cata.getId()
+        return template.update("update cata set `name` = ? where id = ?",
+                cata.getName(), cata.getId()
         );
     }
 

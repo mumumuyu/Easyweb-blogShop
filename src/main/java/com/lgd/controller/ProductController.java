@@ -49,4 +49,18 @@ public class ProductController {
         }
         return resBody;
     }
+
+    @GetMapping("/api/findProduct")
+    @RequiresAuthentication
+    public ResBody findProduct(@RequestParam int page,
+                               @RequestParam int limit,
+                               @RequestParam String name) {
+        ResBody resBody = new ResBody();
+        int count = service.getCount(name);
+        List<Product> list= service.findProduct(page, limit,name);
+        resBody.setCount(count);
+        resBody.setData(list);
+        resBody.setCode(0);
+        return resBody;
+    }
 }

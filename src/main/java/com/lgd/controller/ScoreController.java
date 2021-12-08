@@ -69,7 +69,7 @@ public class ScoreController {
     @RequiresAuthentication
     public ResBody updateBoke(@RequestBody Score score, HttpServletRequest request) {
         ResBody resBody = new ResBody();
-        score.setCreate_time(new Date());
+//        score.setCreate_time(new Date());
         User user = (User) request.getSession().getAttribute("user");
         int u_id = user.getId();
         int i = service.updateScore(score,u_id);

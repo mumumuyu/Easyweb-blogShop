@@ -40,9 +40,9 @@ public class BokeDao {
     }
 
     public int updateBoke(Boke boke) {
-        return template.update("update boke set `title` = ? ,`content` = ?,`create_time` = ?," +
-                        "`c_id` = ? where id = ?",
-                boke.getTitle(),boke.getContent(),boke.getCreate_time(),boke.getC_id(),boke.getId());
+        return template.update("update boke set `title` = ? ,`content` = ?," +
+                "`c_id` = ? where id = ?",
+                boke.getTitle(),boke.getContent(),boke.getC_id(),boke.getId());
     }
 
     public int delBoke(int id) {

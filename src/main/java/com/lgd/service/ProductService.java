@@ -23,6 +23,13 @@ public class ProductService {
         return dao.getAllProduct(page,limit);
     }
 
+    public List<Product> findProduct(int page, int limit, String name) {return dao.findProduct(page,limit,name);
+    }
+
+    public int getCount(String name){
+        return dao.getCount(name);
+    }
+
     public int addToOrder(int u_id,int p_id,int amount){
         List<Order> orders = dao.getOrderByUidPid(u_id,p_id);
         orders.add(new Order());

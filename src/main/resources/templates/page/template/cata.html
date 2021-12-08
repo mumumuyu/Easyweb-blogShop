@@ -92,7 +92,7 @@
                 [
                     {title: '#',type:'numbers'}
                     ,{field: 'name', sort: true,title: '分类名',minWidth:200}
-                    ,{field: 'create_time', sort: true, title:'上次修改时间',templet: function (d) {
+                    ,{field: 'create_time', sort: true, title:'创建时间',templet: function (d) {
                         return util.toDateString(d.create_time);
                     }}
                     ,{align: 'center', toolbar: '#tableBarBook', title: '操作', minWidth: 200}

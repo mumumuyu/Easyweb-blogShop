@@ -72,7 +72,7 @@ public class BokeController {
     @RequiresRoles("admin")
     public ResBody updateBoke(@RequestBody Boke boke) {
         ResBody resBody = new ResBody();
-        boke.setCreate_time(new Date());
+//        boke.setCreate_time(new Date());
         int i = service.updateBoke(boke);
         if (i == 1){
             resBody.setCode(200);

@@ -58,7 +58,7 @@ public class CataController {
     @RequiresRoles("admin")
     public ResBody updateCata(@RequestBody Cata cata) {
         ResBody resBody = new ResBody();
-        cata.setCreate_time(new Date());
+//        cata.setCreate_time(new Date());
         int i = service.updateCata(cata);
         if (i == 1){
             resBody.setCode(200);

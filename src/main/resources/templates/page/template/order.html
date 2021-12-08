@@ -37,7 +37,7 @@
                         <button class="layui-btn icon-btn" lay-filter="formSubSearchProduct" lay-submit>
                             <i class="layui-icon">&#xe615;</i>搜索
                         </button>
-                        <button id="btnProduct" class="layui-btn icon-btn"><i class="layui-icon">&#xe654;</i>结算</button>
+                        <button id="btnProduct" class="layui-btn icon-btn"><i class="layui-icon layui-icon-cart"></i>结算</button>
                     </div>
                 </div>
             </div>
@@ -147,6 +147,11 @@
             if (layEvent === 'del') {
                 doDel(data.p_id, data.product.name);
             }
+        });
+
+        // 添加
+        $('#btnProduct').click(function () {
+            layer.msg("功能待开发噢~", {icon: 1});
         });
 
         // 删除

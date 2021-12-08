@@ -115,7 +115,7 @@
                     {title: '#',type:'numbers'}
                     ,{field: 'title', sort: true, title: '博客标题',style:'height:100px;'}
                     ,{field: 'content', title: '文章'}
-                    ,{field: 'create_time', sort: true,title: '上次更新时间',templet: function (d) {
+                    ,{field: 'create_time', sort: true,title: '创建时间',templet: function (d) {
                         return util.toDateString(d.create_time);
                     }}
                     ,{field: 'c_id', title: '文章分类',templet: function (d) {

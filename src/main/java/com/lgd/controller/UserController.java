@@ -94,7 +94,7 @@ public class UserController {
             resBody.setMsg("登录成功");
         }else {
             resBody.setCode(500);
-            resBody.setMsg("登录失败，请重新登录");
+            resBody.setMsg("密码错误！请重新登录");
         }
         return resBody;
     }

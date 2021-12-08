@@ -19,8 +19,23 @@ public class ProductDao {
         return count;
     }
 
+    public int getCount(String name) {
+        int count = template.queryForObject("select count(*) from product where `name` like '%"+name+"%'", Integer.class);
+        return count;
+    }
+
     public List<Product> getAllProduct(int page, int limit) {
         List<Product> list = template.query("select * from product limit ?,?" ,new Object[]{(page-1)*limit,limit} ,
+                new BeanPropertyRowMapper(Product.class));
+        if (list!=null){
+            return list;
+        }else{
+            return null;
+        }
+    }
+
+    public List<Product> findProduct(int page, int limit, String name) {
+        List<Product> list = template.query("select * from product  where `name` like '%"+name+"%' limit ?,?" ,new Object[]{(page-1)*limit,limit},
                 new BeanPropertyRowMapper(Product.class));
         if (list!=null){
             return list;

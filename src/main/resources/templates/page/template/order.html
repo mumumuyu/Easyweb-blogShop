@@ -113,7 +113,7 @@
             cols: [
                 [
                     {field: 'p_id', title: '商品编号'}
-                    ,{field: 'p_imgUrl', title:'样图',templet: function (d) {
+                    ,{field: 'p_imgUrl', title:'样图',minWidth: 200,templet: function (d) {
                         return d.product.imgUrl;
                     }}
                     ,{field: 'p_name', sort: true, title: '商品名称',templet: function (d) {

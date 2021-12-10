@@ -1,6 +1,6 @@
 package com.lgd.controller;
 
-import com.lgd.bean.*;
+import com.lgd.pojo.*;
 import com.lgd.service.CataService;
 import org.apache.shiro.authz.annotation.RequiresAuthentication;
 import org.apache.shiro.authz.annotation.RequiresRoles;

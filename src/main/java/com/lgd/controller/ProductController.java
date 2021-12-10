@@ -1,16 +1,12 @@
 package com.lgd.controller;
 
-import com.lgd.bean.*;
+import com.lgd.pojo.*;
 import com.lgd.service.ProductService;
-import com.lgd.service.ScoreService;
 import org.apache.shiro.authz.annotation.RequiresAuthentication;
-import org.json.JSONException;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
-import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -24,7 +20,7 @@ public class ProductController {
                                 @RequestParam int limit) {
         ResBody resBody = new ResBody();
         int count = service.getCount();
-        List<Product> list= service.getAllScores(page, limit);
+        List<Product> list= service.getAllProducts(page, limit);
         resBody.setCount(count);
         resBody.setData(list);
         resBody.setCode(0);

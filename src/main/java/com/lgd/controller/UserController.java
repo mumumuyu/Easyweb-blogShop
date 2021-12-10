@@ -1,7 +1,7 @@
 package com.lgd.controller;
 
-import com.lgd.bean.ResBody;
-import com.lgd.bean.User;
+import com.lgd.pojo.ResBody;
+import com.lgd.pojo.User;
 import com.lgd.service.UserService;
 import com.lgd.util.JWTUtil;
 import com.lgd.util.MD5Utils;

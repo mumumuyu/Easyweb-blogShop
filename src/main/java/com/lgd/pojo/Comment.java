@@ -1,4 +1,4 @@
-package com.lgd.bean;
+package com.lgd.pojo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,8 +9,12 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Cata {
+public class Comment {
     int id;
-    String name;
+    String comment;
+    String email;
+    String nick;
     Date create_time;
+    int b_id;
+    Boke boke;
 }

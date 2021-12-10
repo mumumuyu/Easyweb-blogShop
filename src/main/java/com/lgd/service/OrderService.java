@@ -1,9 +1,9 @@
 package com.lgd.service;
 
-import com.lgd.bean.Order;
-import com.lgd.bean.Product;
+import com.lgd.pojo.Count;
+import com.lgd.pojo.Order;
 import com.lgd.dao.OrderDao;
-import com.lgd.dao.ProductDao;
+import com.lgd.dao.ReportYearMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +13,11 @@ import java.util.List;
 public class OrderService {
     @Autowired
     OrderDao dao;
+    @Autowired
+    ReportYearMapper mapper;
+
+    public List<Count> reportByYearsForOrder() {return mapper.reportByYearsForOrder(); }
+    public List<Integer> reportYearForOrder(String year){return mapper.reportYearForOrder(year);}
 
     public int getCount() {
         return dao.getCount();

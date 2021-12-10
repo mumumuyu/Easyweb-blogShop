@@ -1,6 +1,6 @@
 package com.lgd.service;
 
-import com.lgd.bean.User;
+import com.lgd.pojo.User;
 import com.lgd.dao.UserDao;
 import com.lgd.util.MD5Utils;
 import org.springframework.beans.factory.annotation.Autowired;

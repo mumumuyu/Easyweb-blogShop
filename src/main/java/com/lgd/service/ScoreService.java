@@ -1,15 +1,10 @@
 package com.lgd.service;
 
-import com.lgd.bean.Boke;
-import com.lgd.bean.Comment;
-import com.lgd.bean.Score;
-import com.lgd.bean.User;
+import com.lgd.pojo.Score;
 import com.lgd.dao.ScoreDao;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.stereotype.Service;
 
-import javax.websocket.Session;
 import java.util.List;
 
 @Service

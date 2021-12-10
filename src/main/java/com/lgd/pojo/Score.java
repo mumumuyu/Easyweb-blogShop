@@ -1,4 +1,4 @@
-package com.lgd.bean;
+package com.lgd.pojo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,11 +9,12 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Boke {
+public class Score {
     int id;
-    String title;
-    String content;
+    int u_id;
+    int b_id;
     Date create_time;
-    int c_id;
-    Cata cata;
+    int score;
+    Boke boke;
+    User user;
 }

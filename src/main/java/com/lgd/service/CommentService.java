@@ -1,6 +1,6 @@
 package com.lgd.service;
 
-import com.lgd.bean.Comment;
+import com.lgd.pojo.Comment;
 import com.lgd.dao.CommentDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

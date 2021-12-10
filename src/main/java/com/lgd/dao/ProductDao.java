@@ -1,7 +1,7 @@
 package com.lgd.dao;
 
-import com.lgd.bean.Order;
-import com.lgd.bean.Product;
+import com.lgd.pojo.Order;
+import com.lgd.pojo.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;

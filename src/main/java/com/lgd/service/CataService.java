@@ -1,6 +1,6 @@
 package com.lgd.service;
 
-import com.lgd.bean.Cata;
+import com.lgd.pojo.Cata;
 import com.lgd.dao.CataDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

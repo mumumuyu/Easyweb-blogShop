@@ -1,8 +1,7 @@
 package com.lgd.controller;
 
-import com.lgd.bean.Boke;
-import com.lgd.bean.Comment;
-import com.lgd.bean.ResBody;
+import com.lgd.pojo.Comment;
+import com.lgd.pojo.ResBody;
 import com.lgd.service.CommentService;
 import org.apache.shiro.authz.annotation.RequiresAuthentication;
 import org.apache.shiro.authz.annotation.RequiresRoles;

@@ -1,6 +1,6 @@
 package com.lgd.controller;
 
-import com.lgd.bean.ResponseBean;
+import com.lgd.pojo.ResponseBean;
 import com.lgd.exception.UnauthorizedException;
 import org.apache.shiro.ShiroException;
 import org.springframework.http.HttpStatus;

@@ -1,16 +1,11 @@
 package com.lgd.controller;
 
-import com.lgd.bean.Boke;
-import com.lgd.bean.Comment;
 import com.lgd.service.BokeService;
 import com.lgd.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
-import java.util.List;
 
 @Controller
 public class IndexController {
@@ -75,9 +70,9 @@ public class IndexController {
         return "page/template/cata";
     }
 
-    @GetMapping("/boke")
-    public String boke(){
-        return "page/template/boke";
+    @GetMapping("/blog")
+    public String blog(){
+        return "page/template/blog";
     }
 
     @GetMapping("/comment")
@@ -93,6 +88,16 @@ public class IndexController {
     @GetMapping("/reportByYear")
     public String reportByYear(){
         return "page/template/reportByYear";
+    }
+
+    @GetMapping("/reportYearForOrder")
+    public String reportYearForOrder(){
+        return "page/template/reportYearForOrder";
+    }
+
+    @GetMapping("/reportByYearForOrder")
+    public String reportByYearForOrder(){
+        return "page/template/reportByYearForOrder";
     }
 
     @GetMapping("/score")

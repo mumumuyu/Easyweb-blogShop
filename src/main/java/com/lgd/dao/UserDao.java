@@ -1,6 +1,6 @@
 package com.lgd.dao;
 
-import com.lgd.bean.User;
+import com.lgd.pojo.User;
 import com.lgd.util.MD5Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;

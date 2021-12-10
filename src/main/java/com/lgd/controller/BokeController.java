@@ -1,10 +1,9 @@
 package com.lgd.controller;
 
-import com.lgd.bean.Boke;
-import com.lgd.bean.Count;
-import com.lgd.bean.ResBody;
+import com.lgd.pojo.Boke;
+import com.lgd.pojo.Count;
+import com.lgd.pojo.ResBody;
 import com.lgd.service.BokeService;
-import org.apache.ibatis.annotations.Param;
 import org.apache.shiro.authz.annotation.RequiresAuthentication;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,7 +52,7 @@ public class BokeController {
     }
 
     @PostMapping("/api/addBoke")
-    @RequiresRoles("admin")
+    @RequiresAuthentication
     public ResBody addBoke(@RequestBody Boke boke) {
         ResBody resBody = new ResBody();
         boke.setCreate_time(new Date());
@@ -113,7 +112,7 @@ public class BokeController {
         return resBody;
     }
 
-    @RequestMapping("/reportYearBoke")
+    @PostMapping("/reportYearBoke")
     public Object reportYearBoke(String year){
         List<Integer> num = service.reportYearBoke(year);
         for (int i = 0; i < num.size(); i++) {
@@ -124,7 +123,7 @@ public class BokeController {
         return num;
     }
 
-    @RequestMapping("/reportByYears")
+    @GetMapping("/reportByYears")
     public Object reportYearBingFinance(){
         List<Count> counts = service.reportByYears();
         return counts;

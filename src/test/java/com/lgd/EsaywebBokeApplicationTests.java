@@ -1,6 +1,6 @@
 package com.lgd;
 
-import com.lgd.bean.*;
+import com.lgd.pojo.*;
 import com.lgd.dao.*;
 import com.lgd.service.ProductService;
 import com.lgd.util.MD5Utils;

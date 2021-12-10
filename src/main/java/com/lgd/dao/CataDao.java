@@ -1,6 +1,6 @@
 package com.lgd.dao;
 
-import com.lgd.bean.Cata;
+import com.lgd.pojo.Cata;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;

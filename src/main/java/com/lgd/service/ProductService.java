@@ -1,11 +1,10 @@
 package com.lgd.service;
 
-import com.lgd.bean.Order;
-import com.lgd.bean.Product;
-import com.lgd.bean.Score;
+import com.lgd.pojo.Order;
+import com.lgd.pojo.Product;
 import com.lgd.dao.ProductDao;
-import com.lgd.dao.ScoreDao;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -15,11 +14,20 @@ import java.util.List;
 public class ProductService {
     @Autowired
     ProductDao dao;
+    @Autowired
+    RedisTemplate redisTemplate;
+
     public int getCount() {
-        return dao.getCount();
+        if (redisTemplate.opsForValue().get("productCount") == null){
+            int num = dao.getCount();
+            redisTemplate.opsForValue().set("productCount", num);
+            return dao.getCount();
+        }else{
+            return (int) redisTemplate.opsForValue().get("productCount");
+        }
     }
 
-    public List<Product> getAllScores(int page, int limit) {
+    public List<Product> getAllProducts(int page, int limit) {
         return dao.getAllProduct(page,limit);
     }
 

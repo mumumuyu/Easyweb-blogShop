@@ -1,7 +1,7 @@
 package com.lgd.dao;
 
-import com.lgd.bean.Boke;
-import com.lgd.bean.Comment;
+import com.lgd.pojo.Boke;
+import com.lgd.pojo.Comment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;

@@ -1,4 +1,4 @@
-package com.lgd.bean;
+package com.lgd.pojo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,12 +9,15 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Comment {
+public class Product {
     int id;
-    String comment;
-    String email;
-    String nick;
+    String name;
+    String unit;
+    float price;
+    int stock;
+    String imgUrl;
+    String description;
     Date create_time;
-    int b_id;
-    Boke boke;
+    Date update_time;
+    int status;
 }

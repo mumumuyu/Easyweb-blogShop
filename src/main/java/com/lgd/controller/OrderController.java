@@ -1,16 +1,10 @@
 package com.lgd.controller;
 
-import com.lgd.bean.Order;
-import com.lgd.bean.Product;
-import com.lgd.bean.ResBody;
-import com.lgd.bean.User;
+import com.lgd.pojo.*;
 import com.lgd.service.OrderService;
-import com.lgd.service.ProductService;
 import org.apache.shiro.authz.annotation.RequiresAuthentication;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -19,6 +13,23 @@ import java.util.List;
 public class OrderController {
     @Autowired
     OrderService service;
+
+    @PostMapping("/reportYearForOrder")
+    public Object reportYearForOrder(String year){
+        List<Integer> num = service.reportYearForOrder(year);
+        for (int i = 0; i < num.size(); i++) {
+            if(null==num.get(i)) {
+                num.set(i, 0);
+            }
+        }
+        return num;
+    }
+
+    @GetMapping("/reportByYearsForOrder")
+    public Object reportYearForOrder(){
+        List<Count> counts = service.reportByYearsForOrder();
+        return counts;
+    }
 
     @GetMapping("/api/findOrder")
     @RequiresAuthentication

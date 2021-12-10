@@ -1,6 +1,6 @@
 package com.lgd.shiro;
 
-import com.lgd.bean.User;
+import com.lgd.pojo.User;
 import com.lgd.service.UserService;
 import com.lgd.util.JWTUtil;
 import org.apache.logging.log4j.LogManager;

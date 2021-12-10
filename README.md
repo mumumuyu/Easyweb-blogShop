@@ -6,3 +6,5 @@ A Easyweb-boke&shop for my web course design
 用两个页面实现的商品浏览+购物车的购物模块，
 使用Redis缓存数据库对不常修改的数据进行查询优化的
 基于Springboot+EasyWeb前端模板+Shiro实现的博客购物学习系统
+
+开发工具:IDEA(2021.1.3),Mysql(8.0.25),Redis(5.0.10)

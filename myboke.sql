@@ -11,7 +11,7 @@
  Target Server Version : 80025
  File Encoding         : 65001
 
- Date: 08/12/2021 13:29:59
+ Date: 10/12/2021 13:20:46
 */
 
 SET NAMES utf8mb4;
@@ -30,7 +30,7 @@ CREATE TABLE `boke`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `c_id`(`c_id`) USING BTREE,
   CONSTRAINT `boke_ibfk_1` FOREIGN KEY (`c_id`) REFERENCES `cata` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 16 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of boke
@@ -55,7 +55,7 @@ CREATE TABLE `cata`  (
   `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   `create_time` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of cata
@@ -82,7 +82,7 @@ CREATE TABLE `comment`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `b_id`(`b_id`) USING BTREE,
   CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`b_id`) REFERENCES `boke` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 18 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 19 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of comment
@@ -123,10 +123,18 @@ CREATE TABLE `order`  (
 -- ----------------------------
 -- Records of order
 -- ----------------------------
-INSERT INTO `order` VALUES (1, 1, 8001, 12, 2328.00, 1, 0, '2021-12-03 10:16:16');
+INSERT INTO `order` VALUES (14, 1, 8001, 4, 776.00, 0, 0, '2021-12-08 19:36:16');
 INSERT INTO `order` VALUES (3, 1, 8002, 2, 600.00, 1, 1, '2021-12-03 21:16:16');
 INSERT INTO `order` VALUES (4, 1, 8003, 3, 300.00, 0, 0, '2021-12-04 16:05:18');
+INSERT INTO `order` VALUES (7, 1, 8004, 2, 20.00, 0, 0, '2021-12-08 13:59:16');
 INSERT INTO `order` VALUES (5, 1, 8006, 2, 400.00, 0, 0, '2021-12-04 16:07:45');
+INSERT INTO `order` VALUES (6, 1, 8009, 2, 50.00, 0, 0, '2021-12-08 13:59:13');
+INSERT INTO `order` VALUES (8, 1, 8022, 2, 79.80, 0, 0, '2021-12-08 13:59:20');
+INSERT INTO `order` VALUES (9, 1, 8024, 2, 5198.00, 0, 0, '2021-12-08 13:59:21');
+INSERT INTO `order` VALUES (10, 1, 8027, 2, 176.00, 0, 0, '2021-12-08 13:59:24');
+INSERT INTO `order` VALUES (11, 1, 8030, 2, 459.60, 0, 0, '2021-12-08 13:59:33');
+INSERT INTO `order` VALUES (12, 1, 8033, 2, 276.00, 0, 0, '2021-12-08 13:59:36');
+INSERT INTO `order` VALUES (13, 1, 8034, 2, 2798.00, 0, 0, '2021-12-08 13:59:39');
 INSERT INTO `order` VALUES (2, 2, 8001, 1, 194.00, 1, 1, '2021-12-03 10:16:16');
 
 -- ----------------------------
@@ -151,11 +159,11 @@ CREATE TABLE `product`  (
 -- Records of product
 -- ----------------------------
 INSERT INTO `product` VALUES (8001, '天猫魔盒', '盒', 194.00, 499981, '<a href=\"https://detail.tmall.com/item.htm?spm=a220m.1000858.1000725.21.30337dabkY6Q37&id=629588158046\" title=\"点我查看详细\"><img src=\"http://localhost:8081/images/product/tmmh.png\"></a>', '好东西', '2021-12-04 09:27:17', '2021-12-04 09:58:44', 1);
-INSERT INTO `product` VALUES (8002, '明星同款太阳镜', '副', 300.00, 43, '<img src=\"http://localhost:8081/images/product/mxtktyj.png\">', '好东西', '2021-12-04 09:27:17', '2021-12-04 09:58:44', 0);
-INSERT INTO `product` VALUES (8003, 'tp-link路由器', '个', 100.00, 60, '<img src=\"http://localhost:8081/images/product/tplink.png\">', '好东西', '2021-12-04 09:27:17', '2021-12-04 09:58:44', 1);
-INSERT INTO `product` VALUES (8004, '云南白药牙膏', '只', 10.00, 66, '<img src=\"http://localhost:8081/images/product/ynbyyg.png\">', '好东西', '2021-12-04 09:27:17', '2021-12-04 09:58:44', 0);
-INSERT INTO `product` VALUES (8005, '康师傅红烧牛肉面', '桶', 5.00, 68, '<img src=\"http://localhost:8081/images/product/ksfhsnrm.png\">', '好东西', '2021-12-04 09:27:17', '2021-12-04 09:58:44', 1);
-INSERT INTO `product` VALUES (8006, '小米音箱', '个', 200.00, 90, '<img src=\"http://localhost:8081/images/product/xiaomiaiyx.png\">', '好东西', '2021-12-04 09:27:17', '2021-12-04 09:58:44', 0);
+INSERT INTO `product` VALUES (8002, '明星同款太阳镜', '副', 899.00, 43, '<a href=\"https://detail.tmall.com/item.htm?id=643272943855\" title=\"点我查看详细\"><img src=\"http://localhost:8081/images/product/mxtktyj.png\"></a>', '好东西', '2021-12-04 09:27:17', '2021-12-04 09:58:44', 0);
+INSERT INTO `product` VALUES (8003, 'tp-link路由器', '个', 100.00, 60, '<a href=\"https://detail.tmall.com/item.htm?id=586835272611&sku_properties=5919063:3284564\"title=\"点我查看详细\"> <img src=\"http://localhost:8081/images/product/tplink.png\"></a>', '好东西', '2021-12-04 09:27:17', '2021-12-04 09:58:44', 1);
+INSERT INTO `product` VALUES (8004, '云南白药牙膏', '只', 10.00, 66, '<a href=\"https://item.taobao.com/item.htm?id=662314029146\" title=\"点我查看详细\"><img src=\"http://localhost:8081/images/product/ynbyyg.png\"></a>', '好东西', '2021-12-04 09:27:17', '2021-12-04 09:58:44', 0);
+INSERT INTO `product` VALUES (8005, '康师傅红烧牛肉面', '桶', 5.00, 68, '<a href=\"https://chaoshi.detail.tmall.com/item.htm?id=605687714933\" title=\"点我查看详细\"><img src=\"http://localhost:8081/images/product/ksfhsnrm.png\"></a>', '好东西', '2021-12-04 09:27:17', '2021-12-04 09:58:44', 1);
+INSERT INTO `product` VALUES (8006, '小米音箱', '个', 200.00, 90, '<a href=\"https://detail.tmall.com/item.htm?id=657902734446&sku_properties=5919063:6536025\" title=\"点我查看详细\"<img src=\"http://localhost:8081/images/product/xiaomiaiyx.png\"></a>', '好东西', '2021-12-04 09:27:17', '2021-12-04 09:58:44', 0);
 INSERT INTO `product` VALUES (8007, '植护抽纸', '包', 30.00, 6000, '<img src=\"http://localhost:8081/images/product/zhihu.png\">', '好东西', '2021-12-04 09:27:17', '2021-12-04 09:58:44', 1);
 INSERT INTO `product` VALUES (8008, '鼠标垫', '个', 5.00, 5000, ' <img src=\"http://localhost:8081/images/product/sbd.png\">', '好东西', '2021-12-04 09:27:17', '2021-12-04 09:58:44', 1);
 INSERT INTO `product` VALUES (8009, '全自动雨伞', '柄', 25.00, 70, ' <img src=\"http://localhost:8081/images/product/yusan.png\">', '好东西', '2021-12-04 09:27:17', '2021-12-04 09:58:44', 1);
@@ -235,6 +243,6 @@ CREATE TABLE `user`  (
 -- ----------------------------
 INSERT INTO `user` VALUES (1, 'admin', 'lgd', 'e10adc3949ba59abbe56e057f20f883e', 1, '13586684997', '杭州市西湖区留和路', 'admin', 'view,edit');
 INSERT INTO `user` VALUES (2, 'liming', '李明', 'e10adc3949ba59abbe56e057f20f883e', 1, '13688884457', '北京市东城区前门东大街9号', 'user', 'view');
-INSERT INTO `user` VALUES (22, 'ceshi', '测试用户', 'e10adc3949ba59abbe56e057f20f883e', 2, '13777777777', 'HZ', 'user', '');
+INSERT INTO `user` VALUES (22, 'ceshi', '测试用户', 'e10adc3949ba59abbe56e057f20f883e', 2, '13777777777', 'HZ', 'user', 'view');
 
 SET FOREIGN_KEY_CHECKS = 1;

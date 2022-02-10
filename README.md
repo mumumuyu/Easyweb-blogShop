@@ -3,6 +3,7 @@ A Easyweb-boke&shop for my web course design
 
 ### 简介
 
+演示地址: http://www.leigd.cn/logins
 - 全部基于ajax实现的含验证码（滑块）两个验证方式的登录
 - 密码使用了MD5加密，可以点击logo下载图片，介绍页面的的轮播
 - 博客分类，内容，评论，评分（二级联动），用户的管理(JDBCTemplate's CRUD)
@@ -14,7 +15,10 @@ A Easyweb-boke&shop for my web course design
 开发工具:IDEA(2021.1.3),Mysql(8.0.25),Redis(5.0.10)
 
 ### 更新日志
-
+- V3.3.0 简单部署上线  2022-2-7~9
+  - 修复购物车条数bug
+  - 实现用nginx反向代理网站80端口
+  - 进行了域名购买，解析，简单备案以及上线
 - V3.2.0 完善了购物体验  2021-12-8~10
   - 实现了商品选购的搜索功能
   - 实现了购物车的搜索功能

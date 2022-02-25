@@ -13,8 +13,8 @@ public class OrderDao {
     @Autowired
     JdbcTemplate template;
 
-    public int getCount() {
-        int count = template.queryForObject("select count(*) from `order`", Integer.class);
+    public int getCount(int u_id) {
+    int count = template.queryForObject("select count(*) from `order` where  u_id= "+u_id,Integer.class);
         return count;
     }
 

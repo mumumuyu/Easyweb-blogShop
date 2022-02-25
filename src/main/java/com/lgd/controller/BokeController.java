@@ -52,7 +52,7 @@ public class BokeController {
     }
 
     @PostMapping("/api/addBoke")
-    @RequiresAuthentication
+    @RequiresRoles("admin")
     public ResBody addBoke(@RequestBody Boke boke) {
         ResBody resBody = new ResBody();
         boke.setCreate_time(new Date());

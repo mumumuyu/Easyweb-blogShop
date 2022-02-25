@@ -3,6 +3,7 @@ package com.lgd.controller;
 import com.lgd.pojo.ResBody;
 import com.lgd.pojo.User;
 import com.lgd.service.UserService;
+import com.lgd.util.IpUtil;
 import com.lgd.util.JWTUtil;
 import com.lgd.util.MD5Utils;
 import com.lgd.util.RandomValidateCodeUtil;
@@ -12,6 +13,7 @@ import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,6 +25,8 @@ import java.util.Map;
 
 @RestController
 public class UserController {
+
+    private static final Logger logger =  LoggerFactory.getLogger(RandomValidateCodeUtil.class);
 
     @Autowired
     UserService service;
@@ -36,7 +40,7 @@ public class UserController {
         ResBody resBody = new ResBody();
         try{
             //从session中获取随机数
-            String inputStr = requestMap.get("yzm").toString();
+            String inputStr = requestMap.get("yzm").toString().toUpperCase();
             String random = (String) session.getAttribute("RANDOMVALIDATECODEKEY");
             if (random == null) {
                 resBody.setCode(500);
@@ -78,13 +82,14 @@ public class UserController {
     @ApiOperation(value="用户登录", notes="根据用户名，密码进行登录")
     @PostMapping("/user/loginByPassword")
     public ResBody loginByPassword(@RequestBody Map<String, Object> params,
-                                   HttpSession session) {
+                                   HttpSession session, HttpServletRequest request) {
         ResBody resBody = new ResBody();
         String code = params.get("code").toString();
         String password = MD5Utils.md5Password(params.get("password").toString());
         User user = service.getUser(code);
         if(user == null){
             resBody.setCode(500);
+            logger.info("ip为"+IpUtil.getIpAddr(request)+"的用户,登录输入了不存在的用户名");
             resBody.setMsg("不存在此用户名,请重新登录");
         }else if (password.equals(user.getPassword())){
             user.setPassword(params.get("password").toString());
@@ -92,8 +97,10 @@ public class UserController {
             session.setAttribute("token", JWTUtil.sign(code, password));
             resBody.setCode(200);
             resBody.setMsg("登录成功");
+            logger.info("ip为"+IpUtil.getIpAddr(request)+"的用户,名为"+user.getUsername()+"登录了");
         }else {
             resBody.setCode(500);
+            logger.info("ip为"+IpUtil.getIpAddr(request)+"的用户,想进入名为"+user.getUsername()+"的账户可惜密码错了");
             resBody.setMsg("密码错误！请重新登录");
         }
         return resBody;

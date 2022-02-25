@@ -19,8 +19,8 @@ public class OrderService {
     public List<Count> reportByYearsForOrder() {return mapper.reportByYearsForOrder(); }
     public List<Integer> reportYearForOrder(String year){return mapper.reportYearForOrder(year);}
 
-    public int getCount() {
-        return dao.getCount();
+    public int getCount(int u_id) {
+        return dao.getCount(u_id);
     }
 
     public int getCount(String name,int u_id) {

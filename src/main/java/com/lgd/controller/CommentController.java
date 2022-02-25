@@ -30,6 +30,7 @@ public class CommentController {
     }
 
     @PostMapping("/api/addComment")
+    @RequiresRoles("admin")
     public ResBody addComment(@RequestBody Comment comment) {
         ResBody resBody = new ResBody();
         comment.setCreate_time(new Date());

@@ -53,8 +53,8 @@ public class OrderController {
                                 @RequestParam int limit,
                                 HttpSession session) {
         ResBody resBody = new ResBody();
-        int count = service.getCount();
         int u_id = ((User)session.getAttribute("user")).getId();
+        int count = service.getCount(u_id);
         List<Order> list= service.getAllOrders(u_id,page, limit);
         resBody.setCount(count);
         resBody.setData(list);

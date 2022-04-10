@@ -57,6 +57,11 @@ public class UserDao {
     public int addUser(User user) {
         String pwd = "123456";
         String newPwd = MD5Utils.md5Password(pwd);
+        if(user.getRole().equals("admin"))
+            user.setPermission("view,edit");
+        else{
+            user.setPermission("view");
+        }
         return template.update("insert into `user` values(null,?,?,?,?,?,?,?,?)",
                 user.getCode(),user.getUsername(),newPwd,user.getGender(),
                 user.getPhone(),user.getAddress(),user.getRole(),user.getPermission()

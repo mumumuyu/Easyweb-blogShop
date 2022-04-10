@@ -2,7 +2,9 @@ package com.lgd.controller;
 
 import com.lgd.pojo.*;
 import com.lgd.service.CataService;
+import org.apache.shiro.authz.annotation.Logical;
 import org.apache.shiro.authz.annotation.RequiresAuthentication;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -39,7 +41,8 @@ public class CataController {
     }
 
     @PostMapping("/api/addCata")
-    @RequiresRoles("admin")
+    @RequiresPermissions(logical = Logical.AND, value = {"view", "edit"})
+//    @RequiresRoles("admin")
     public ResBody addCata(@RequestBody Cata cata) {
         ResBody resBody = new ResBody();
         cata.setCreate_time(new Date());

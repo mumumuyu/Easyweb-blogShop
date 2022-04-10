@@ -46,6 +46,7 @@ public class MyRealm extends AuthorizingRealm {
 
     /**
      * 只有当需要检测用户权限的时候才会调用此方法，例如checkRole,checkPermission之类的
+     * 在此查询用户获取用户Role权限，并写入角色与所携带权限
      */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
@@ -53,6 +54,7 @@ public class MyRealm extends AuthorizingRealm {
         User user = userService.getUser(code);
         SimpleAuthorizationInfo simpleAuthorizationInfo = new SimpleAuthorizationInfo();
         simpleAuthorizationInfo.addRole(user.getRole());
+        //逗号隔开权限生成允许的操作方案如view,edit分割为view与edit
         Set<String> permission = new HashSet<>(Arrays.asList(user.getPermission().split(",")));
         simpleAuthorizationInfo.addStringPermissions(permission);
         return simpleAuthorizationInfo;

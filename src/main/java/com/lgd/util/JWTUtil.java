@@ -50,7 +50,7 @@ public class JWTUtil {
      * 生成签名,5min后过期
      * @param username 用户名
      * @param secret 用户的密码
-     * @return 加密的token
+     * @return 加密的token HMAC是一种使用单向散列函数来构造消息认证码的方法，其中HMAC中的H就是Hash的意思。
      */
     public static String sign(String username, String secret) {
 //        try {

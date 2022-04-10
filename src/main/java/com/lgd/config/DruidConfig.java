@@ -27,6 +27,7 @@ public class DruidConfig {
         ServletRegistrationBean bean = new ServletRegistrationBean(new StatViewServlet(), "/druid/*");
         Map<String,String> initParams = new HashMap<>();
 
+        //druid后台监控访问权限配置
         initParams.put("loginUsername","admin");
         initParams.put("loginPassword","123456");
         initParams.put("allow","");//默认就是允许所有访问

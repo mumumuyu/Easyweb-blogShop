@@ -16,6 +16,7 @@ A Easyweb-boke&shop for my web course design
 
 ### 更新日志
 - V3.3.0 简单部署上线  2022-2-7~9
+  - 修复-增加用户permission
   - 修复购物车条数bug
   - 实现用nginx反向代理网站80端口
   - 进行了域名购买，解析，简单备案以及上线

@@ -291,7 +291,7 @@
                             headers : {
                                 Authorization: '[[${session.token}]]'
                             },
-                            async:false,
+                            async:true,
                             success: function (res) {
                                 if (res.code == 0){
                                     for(var i in res.data){

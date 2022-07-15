@@ -47,6 +47,7 @@ public class BokeService {
     }
 
     public int delBoke(int id) {
+        redisTemplate.delete("bokeCount");
         return dao.delBoke(id);
     }
 

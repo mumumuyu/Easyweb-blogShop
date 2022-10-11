@@ -58,4 +58,8 @@ public class UserService {
     public void resetPass(int id) {
         dao.resetPass(id);
     }
+
+    public void doCountAdd() {
+        dao.doCountAdd();
+    }
 }

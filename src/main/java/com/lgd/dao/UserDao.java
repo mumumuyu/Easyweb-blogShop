@@ -103,4 +103,8 @@ public class UserDao {
                 newPwd,id
         );
     }
+
+    public void doCountAdd() {
+        template.update("update all_log set count = count + 1");
+    }
 }

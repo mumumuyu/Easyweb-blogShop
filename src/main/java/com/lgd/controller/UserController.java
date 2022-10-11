@@ -14,12 +14,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -30,6 +32,9 @@ public class UserController {
 
     @Autowired
     UserService service;
+    @Autowired
+    JdbcTemplate jdbcTemplate;
+
     private static final Logger LOG = LoggerFactory.getLogger(UserController.class);
 
     /**
@@ -65,6 +70,7 @@ public class UserController {
     @RequestMapping(value = "/getVerify")
     public void getVerify(HttpServletRequest request, HttpServletResponse response) {
         try {
+            service.doCountAdd();
             //设置相应类型,告诉浏览器输出的内容为图片
             response.setContentType("image/jpeg");
             //设置响应头信息，告诉浏览器不要缓存此内容
@@ -98,6 +104,7 @@ public class UserController {
             resBody.setCode(200);
             resBody.setMsg("登录成功");
             logger.info("ip为"+IpUtil.getIpAddr(request)+"的用户,名为"+user.getUsername()+"登录了");
+            jdbcTemplate.update("insert into login_log(ip,user,login_time) values(?,?,?)",IpUtil.getIpAddr(request),user.getUsername(),new Date());
         }else {
             resBody.setCode(500);
             logger.info("ip为"+IpUtil.getIpAddr(request)+"的用户,想进入名为"+user.getUsername()+"的账户可惜密码错了");
